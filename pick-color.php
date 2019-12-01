@@ -52,7 +52,17 @@
             border: 5px solid lightpink;
             margin-left: 3%;
             margin-top: 10px;
+        }
 
+        footer {
+            width: 90%;
+            background-color: lightsteelblue;
+            height: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 15px;
+            color: gray;
+            padding-top: 20px;
         }
     </style>
 </head>
@@ -98,6 +108,10 @@
             <input type="color" id="text-color3">
         </div>
     </div>
+
+    <footer>
+        saradev@2019
+    </footer>
 </body>
 <script>
     // blink blink
