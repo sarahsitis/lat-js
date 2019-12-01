@@ -31,7 +31,7 @@
             background: white;
             display: inline-block;
             padding: 10px;
-            border: 5px solid lightsteelblue;
+            border: 5px solid lightblue;
             margin-left: 3%;
             margin-top: 25px;
         }
