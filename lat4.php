@@ -49,7 +49,7 @@
         .box {
             width: 60%;
             background-color: lightslategrey;
-            height: 500px;
+            min-height: 500px;
             margin: 100px auto;
             padding: 20px;
             border-left: 40px dotted white;
