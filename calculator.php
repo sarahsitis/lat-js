@@ -9,30 +9,33 @@
     <style>
         body {
             font-family: monospace;
+            text-align: center;
         }
 
         .calc-box {
-            width: 300px;
+            width: 250px;
             min-height: 300px;
             border: 3px solid salmon;
-            margin: 30px auto;
+            margin: 50px 30px;
             padding: 12px;
             text-align: center;
             border-radius: 5px;
             box-shadow: 4px 4px 8px gray;
             background-color: honeydew;
+            display: inline-block;
         }
 
         .calc-sci-box {
             width: 300px;
             min-height: 300px;
             border: 3px solid lightslategray;
-            margin: 30px auto;
+            margin: 50px 30px;
             padding: 12px;
             text-align: center;
             border-radius: 5px;
             box-shadow: 4px 4px 8px gray;
             background-color: lightsteelblue;
+            display: inline-block;
 
         }
 
@@ -62,6 +65,10 @@
             border: 1px solid lightsalmon;
             border-radius: 5px;
             box-shadow: 2px 2px 5px lightgray;
+        }
+
+        .equal {
+            width: 59%;
         }
     </style>
 
@@ -111,11 +118,23 @@
         }
 
         function compute(form) {
-            form.display.value = eval(form.display.value);
+            try {
+                form.display.value = eval(form.display.value);
+            } catch (err) {
+                form.display.value = "error";
+            }
+        }
+
+        function equal(form) {
+            try {
+                calculator.answer.value = eval(calculator.answer.value);
+            } catch (err) {
+                calculator.answer.value = "error";
+            }
         }
 
         function square(form) {
-            form.display.value = eval(form.display.value) * eval(form.display.value);
+            form.display.value = Math.pow(form.display.value, 2);
         }
 
         function checkNum(str) {
@@ -158,7 +177,7 @@
             <br>
             <input class="button" type="button" value="C" onclick="calculator.answer.value = ''">
             <input class="button" type="button" value="0" onclick="calculator.answer.value += '0'">
-            <input class="button" type="button" value="=" onclick="calculator.answer.value = eval(calculator.answer.value)">
+            <input class="button" type="button" value="=" onclick="equal(this.form)">
             <input class="button" type="button" value="/" onclick="calculator.answer.value += '/'">
         </form>
         saradev@2019
@@ -168,6 +187,12 @@
         <h3>Calculator Scientific</h3>
         <form action="" name="calc-sci">
             <input type="text" name="display" max="25">
+            <br>
+            <input class="sci-button" type="button" value="C" onclick="this.form.display.value = 0">
+            <input class="sci-button" type="button" value="Cos" onclick="if(checkNum(this.form.display.value)){ cos(this.form) }">
+            <input class="sci-button" type="button" value="Sin" onclick="if(checkNum(this.form.display.value)){ sin(this.form) }">
+            <input class="sci-button" type="button" value="Tan" onclick="if(checkNum(this.form.display.value)){ tan(this.form) }">
+            <input class="sci-button" type="button" value="Del" onclick="deleteChar(this.form.display)">
             <br>
             <input class="sci-button" type="button" value="Exp" onclick="if(checkNum(this.form.display.value)){ exp(this.form) }">
             <input class="sci-button" type="button" value="7" onclick="addChar(this.form.display, '7')">
@@ -194,14 +219,8 @@
             <input class="sci-button" type="button" value="+" onclick="addChar(this.form.display, '+')">
             <br>
             <input class="sci-button" type="button" value="(" onclick="addChar(this.form.display, '(')">
-            <input class="sci-button" type="button" value="Cos" onclick="if(checkNum(this.form.display.value)){ cos(this.form) }">
-            <input class="sci-button" type="button" value="Sin" onclick="if(checkNum(this.form.display.value)){ sin(this.form) }">
-            <input class="sci-button" type="button" value="Tan" onclick="if(checkNum(this.form.display.value)){ tan(this.form) }">
+            <input class="sci-button equal" type="button" value="=" onclick="if (checkNum(this.form.display.value)) { compute(this.form) }">
             <input class="sci-button" type="button" value=")" onclick="addChar(this.form.display, ')')">
-            <br>
-            <input class="sci-button" type="button" value="C" onclick="this.form.display.value = 0">
-            <input class="sci-button" type="button" value="Del" onclick="deleteChar(this.form.display)">
-            <input class="sci-button" type="button" value="=" onclick="if (checkNum(this.form.display.value)) { compute(this.form) }">
         </form>
         saradev@2019
     </div>
